@@ -11,7 +11,9 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 sh """
                 docker build . -t app
+                docker tag app selhawary/app-node-js
                 docker login -u ${USERNAME} -p ${PASSWORD}
+                docker push selhawary/app-node-js
                 """
             }
             }
